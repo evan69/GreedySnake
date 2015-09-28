@@ -1,0 +1,26 @@
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
+#include <QAction>
+
+const QString imagesPath = ":/images";
+
+MainWindow::MainWindow(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::MainWindow),
+    toolbar(new QToolBar(this))
+{
+    ui->setupUi(this);
+    this->setContextMenuPolicy(Qt::NoContextMenu);
+    QAction* startAction = new QAction(QIcon(imagesPath + "/start.png"),tr("开始游戏"),this);
+    QAction* pauseAction = new QAction(QIcon(imagesPath + "/pause.png"),tr("暂停游戏"),this);
+    QAction* exitAction = new QAction(QIcon(imagesPath + "/exit.png"),tr("退出游戏"),this);
+    toolbar->addAction(startAction);
+    toolbar->addAction(pauseAction);
+    toolbar->addAction(exitAction);
+    this->addToolBar(Qt::TopToolBarArea,toolbar);
+}
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
